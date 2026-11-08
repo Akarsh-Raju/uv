@@ -489,7 +489,7 @@ fn record_is_intact(distribution: &InstalledDist) -> bool {
     let Some(site_packages) = dist_info.parent() else {
         return true;
     };
-    let Ok(file) = std::fs::File::open(dist_info.join("RECORD")) else {
+    let Ok(file) = fs_err::File::open(dist_info.join("RECORD")) else {
         return true;
     };
     let Ok(entries) = uv_install_wheel::read_record(file) else {
